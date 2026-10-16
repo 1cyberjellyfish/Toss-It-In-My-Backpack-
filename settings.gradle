@@ -16,11 +16,7 @@ plugins {
 
 stonecutter {
     create(rootProject) {
-        def targetVersions = ["1.21.1-fabric", "1.21.1-neoforge"]
-        if (JavaVersion.current().isCompatibleWith(JavaVersion.toVersion(25)) || Boolean.getBoolean("enable26")) {
-            targetVersions.addAll(["26.2-fabric", "26.2-neoforge"])
-        }
-        versions(targetVersions as String[])
+        versions("1.21.1-fabric", "1.21.1-neoforge", "26.2-fabric", "26.2-neoforge")
         vcsVersion = "1.21.1-neoforge"
     }
 }

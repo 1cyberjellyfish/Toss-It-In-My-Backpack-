@@ -14,7 +14,11 @@ import net.neoforged.neoforge.common.NeoForge;
 @Mod(TIIMBClient.MOD_ID)
 public class TossitinmybackpakNeoForge {
     public TossitinmybackpakNeoForge(IEventBus modEventBus, ModContainer modContainer) {
+        //? if >1.21.1 {
+        /*if (FMLEnvironment.getDist() == Dist.CLIENT) {
+        *///?} else {
         if (FMLEnvironment.dist == Dist.CLIENT) {
+        //?}
             modEventBus.addListener(this::registerKeyMappings);
             NeoForge.EVENT_BUS.addListener(this::onClientTick);
         }

@@ -2,7 +2,8 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id 'net.neoforged.moddev' version '2.0.148' apply false
-    id 'fabric-loom' version '1.8.11' apply false
+    id 'net.fabricmc.fabric-loom' version '1.19.1' apply false
+    id 'net.fabricmc.fabric-loom-remap' version '1.19.1' apply false
     id 'idea'
 }
 
@@ -46,9 +47,11 @@ neoForge {
     // Specify the version of NeoForge to use.
     version = project.neo_version
 
-    parchment {
-        mappingsVersion = project.parchment_mappings_version
-        minecraftVersion = project.parchment_minecraft_version
+    if (!is26) {
+        parchment {
+            mappingsVersion = project.parchment_mappings_version
+            minecraftVersion = project.parchment_minecraft_version
+        }
     }
 
     // This line is optional. Access Transformers are automatically detected
@@ -112,17 +115,29 @@ neoForge {
     }
 }
 } else if (isFabric) {
-    apply plugin: 'fabric-loom'
+    if (is26) {
+        apply plugin: 'net.fabricmc.fabric-loom'
+    } else {
+        apply plugin: 'net.fabricmc.fabric-loom-remap'
+    }
 
     dependencies {
         minecraft "com.mojang:minecraft:${project.findProperty('minecraft_version') ?: '1.21.1'}"
-        mappings loom.officialMojangMappings()
-        modImplementation "net.fabricmc:fabric-loader:${project.findProperty('fabric_loader_version') ?: '0.16.9'}"
-        modImplementation "net.fabricmc.fabric-api:fabric-api:${project.findProperty('fabric_api_version') ?: '0.106.1+1.21.1'}"
+        if (!is26) {
+            mappings loom.officialMojangMappings()
+            modImplementation "net.fabricmc:fabric-loader:${project.findProperty('fabric_loader_version') ?: '0.16.9'}"
+            modImplementation "net.fabricmc.fabric-api:fabric-api:${project.findProperty('fabric_api_version') ?: '0.106.1+1.21.1'}"
+        } else {
+            implementation "net.fabricmc:fabric-loader:${project.findProperty('fabric_loader_version') ?: '0.19.5'}"
+            implementation "net.fabricmc.fabric-api:fabric-api:${project.findProperty('fabric_api_version') ?: '0.161.0+26.2'}"
+        }
     }
 
-    tasks.named('remapJar', net.fabricmc.loom.task.RemapJarTask).configure {
-        from zipTree(tasks.named('jar').flatMap { it.archiveFile })
+    if (!is26) {
+        tasks.named('remapJar', net.fabricmc.loom.task.RemapJarTask).configure {
+            duplicatesStrategy = DuplicatesStrategy.INCLUDE
+            from zipTree(tasks.named('jar').flatMap { it.archiveFile })
+        }
     }
 }
 

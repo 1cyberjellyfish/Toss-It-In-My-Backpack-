@@ -5,7 +5,9 @@ import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.sounds.SoundEvents;
+//? if <=1.21.1 {
 import net.minecraft.world.inventory.ClickType;
+//?}
 import net.minecraft.world.item.ItemStack;
 
 public class ItemMover {
@@ -16,9 +18,15 @@ public class ItemMover {
         }
 
         // Allow when playing in-game (screen == null) or when viewing player's own inventory
+        //? if >1.21.1 {
+        /*if (client.gui.screen() != null && !(client.gui.screen() instanceof InventoryScreen)) {
+            return;
+        }
+        *///?} else {
         if (client.screen != null && !(client.screen instanceof InventoryScreen)) {
             return;
         }
+        //?}
 
         LocalPlayer player = client.player;
 
@@ -33,7 +41,11 @@ public class ItemMover {
         }
 
         int containerId = player.inventoryMenu.containerId; // 0
+        //? if >1.21.1 {
+        /*int selectedHotbar = player.getInventory().getSelectedSlot();
+        *///?} else {
         int selectedHotbar = player.getInventory().selected;
+        //?}
         int handSlotIndex = 36 + selectedHotbar; // In InventoryMenu, hotbar is slots 36..44
 
         // 1. Pick up the held item stack from hotbar onto cursor
@@ -86,9 +98,9 @@ public class ItemMover {
     }
 
     private static void click(Minecraft client, int containerId, int slotIndex) {
-        //? if >=26.2 {
-        /*client.gameMode.handleInventoryMouseClick(containerId, slotIndex, 0, net.minecraft.world.inventory.ContainerInput.PICKUP, client.player);*/
-        //?} else {
+        //? if >1.21.1 {
+        /*client.gameMode.handleContainerInput(containerId, slotIndex, 0, net.minecraft.world.inventory.ContainerInput.PICKUP, client.player);
+        *///?} else {
         client.gameMode.handleInventoryMouseClick(containerId, slotIndex, 0, ClickType.PICKUP, client.player);
         //?}
     }

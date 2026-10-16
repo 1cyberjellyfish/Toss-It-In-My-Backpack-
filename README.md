@@ -1,4 +1,4 @@
-# Toss it in my backpak! (TIIMB)
+# Toss it in my backpak!
 
 > _... Why?_
 
@@ -20,27 +20,35 @@ _You can change your binded [button](https://en.wikipedia.org/wiki/Push_switch) 
 ------------------------------------
 ------------------------------------
 
-> 🤖 **Full Transparency / Честность:** This mod was written / created by an AI (Google DeepMind Antigravity) paired with a human! (Я ЧЕСТНАЯ!!!)
+> _This mod was written by an AI with human supervision. I am honest!_
 
 ------------------------------------
 
-## 🛠️ Multi-Version & Multi-Loader Setup
+## Targets
 
-Powered by **[Stonecutter](https://stonecutter.kikugie.dev/)** (`dev.kikugie.stonecutter`) targeting both Fabric & NeoForge (1.21.1 and 26.2).
+Fabric and NeoForge on 1.21.1 and 26.2 powered by Stonecutter.
 
-### 🚀 Building
+### Run Client
 
 ```bash
-# Build Fabric 1.21.1
-./gradlew :1.21.1-fabric:build
-
-# Build NeoForge 1.21.1
-./gradlew :1.21.1-neoforge:build
+./gradlew :1.21.1-fabric:runClient
+./gradlew :1.21.1-neoforge:runClient
+./gradlew :26.2-fabric:runClient
+./gradlew :26.2-neoforge:runClient
 ```
 
-The resulting mod `.jar` files will be placed in `versions/<target>/build/libs/`.
+### Build
+
+```bash
+./gradlew :1.21.1-fabric:build
+./gradlew :1.21.1-neoforge:build
+./gradlew :26.2-fabric:build
+./gradlew :26.2-neoforge:build
+```
+
+Output jars are located in `versions/<target>/build/libs/`.
 
 ---
 
-## 📜 License
-WTFPL (Do What The Fuck You Want To Public License).
+## License
+WTFPL
