@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "tossitinmybackpak",
+  "version": "1.0.0",
+  "name": "Toss it in my backpak!",
+  "description": "Client-side mod that lets you bind a key (default G) to toss the held item directly into the top of your backpack!",
+  "authors": [
+    "Cyber_Jellyfish"
+  ],
+  "contact": {
+    "homepage": "https://github.com/CybJel/TIIMB",
+    "sources": "https://github.com/CybJel/TIIMB"
+  },
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "cyber_jellyfish.tiimb.fabric.TossitinmybackpakFabric"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": ">=1.21",
+    "fabric-key-binding-api-v1": "*",
+    "fabric-lifecycle-events-v1": "*"
+  }
+}
