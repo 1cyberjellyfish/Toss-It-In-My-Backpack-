@@ -10,7 +10,7 @@ import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 //?}
 
-public class TossitinmybackpakFabric implements ClientModInitializer {
+public class TossitinmybackpackFabric implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         //? if >1.21.1 {

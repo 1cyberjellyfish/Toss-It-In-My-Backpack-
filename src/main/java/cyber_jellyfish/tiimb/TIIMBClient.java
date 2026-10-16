@@ -6,7 +6,7 @@ import net.minecraft.client.Minecraft;
 import org.lwjgl.glfw.GLFW;
 
 public class TIIMBClient {
-    public static final String MOD_ID = "tossitinmybackpak";
+    public static final String MOD_ID = "tossitinmybackpack";
     public static final String KEY_NAME = "key." + MOD_ID + ".move_item";
 
     //? if >1.21.1 {

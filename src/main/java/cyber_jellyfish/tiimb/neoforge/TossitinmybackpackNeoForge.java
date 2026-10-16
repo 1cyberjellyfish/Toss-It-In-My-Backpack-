@@ -12,8 +12,8 @@ import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.common.NeoForge;
 
 @Mod(TIIMBClient.MOD_ID)
-public class TossitinmybackpakNeoForge {
-    public TossitinmybackpakNeoForge(IEventBus modEventBus, ModContainer modContainer) {
+public class TossitinmybackpackNeoForge {
+    public TossitinmybackpackNeoForge(IEventBus modEventBus, ModContainer modContainer) {
         //? if >1.21.1 {
         /*if (FMLEnvironment.getDist() == Dist.CLIENT) {
         *///?} else {

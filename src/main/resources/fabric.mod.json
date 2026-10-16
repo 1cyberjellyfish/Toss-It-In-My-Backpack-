@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "tossitinmybackpak",
+  "id": "tossitinmybackpack",
   "version": "1.0.0",
-  "name": "Toss it in my backpak!",
+  "name": "Toss it in my backpack!",
   "description": "Client-side mod that lets you bind a key (default G) to toss the held item directly into the top of your backpack!",
   "authors": [
     "Cyber_Jellyfish"
@@ -15,7 +15,7 @@
   "environment": "client",
   "entrypoints": {
     "client": [
-      "cyber_jellyfish.tiimb.fabric.TossitinmybackpakFabric"
+      "cyber_jellyfish.tiimb.fabric.TossitinmybackpackFabric"
     ]
   },
   "depends": {
