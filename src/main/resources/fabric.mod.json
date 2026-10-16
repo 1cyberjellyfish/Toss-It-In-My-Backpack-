@@ -8,11 +8,11 @@
     "Cyber_Jellyfish"
   ],
   "contact": {
-    "homepage": "https://github.com/CybJel/TIIMB",
-    "sources": "https://github.com/CybJel/TIIMB"
+    "homepage": "https://github.com/1cyberjellyfish/Toss-It-In-My-Backpack-",
+    "sources": "https://github.com/1cyberjellyfish/Toss-It-In-My-Backpack-"
   },
   "license": "WTFPL",
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
     "client": [
       "cyber_jellyfish.tiimb.fabric.TossitinmybackpakFabric"
@@ -21,7 +21,6 @@
   "depends": {
     "fabricloader": ">=0.16.0",
     "minecraft": ">=1.21",
-    "fabric-key-binding-api-v1": "*",
-    "fabric-lifecycle-events-v1": "*"
+    "fabric-api": "*"
   }
 }
