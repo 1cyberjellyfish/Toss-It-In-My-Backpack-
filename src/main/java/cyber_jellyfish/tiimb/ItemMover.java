@@ -17,6 +17,13 @@ public class ItemMover {
             return;
         }
 
+
+        LocalPlayer player = client.player;
+
+        if (player.isSpectator()) {
+            return;
+        }
+
         // Allow when playing in-game (screen == null) or when viewing player's own inventory
         //? if >1.21.1 {
         /*if (client.gui.screen() != null && !(client.gui.screen() instanceof InventoryScreen)) {
@@ -27,8 +34,6 @@ public class ItemMover {
             return;
         }
         //?}
-
-        LocalPlayer player = client.player;
 
         // If cursor is already holding an item, avoid interfering
         if (!player.containerMenu.getCarried().isEmpty()) {
@@ -54,6 +59,8 @@ public class ItemMover {
         if (player.containerMenu.getCarried().isEmpty()) {
             return;
         }
+
+        int initialCount = player.containerMenu.getCarried().getCount();
 
         // 2. Phase 1: Try stacking with identical items in the main backpack (slots 9 to 35)
         // Slots 9..17 are top row, 18..26 middle, 27..35 bottom
@@ -88,12 +95,26 @@ public class ItemMover {
             }
         }
 
+        int remainingCount = player.containerMenu.getCarried().isEmpty() ? 0 : player.containerMenu.getCarried().getCount();
+        int movedCount = initialCount - remainingCount;
+
         // 4. Phase 3: Safety check - if inventory was full and items remain on cursor, return to hand
         if (!player.containerMenu.getCarried().isEmpty()) {
             click(client, containerId, handSlotIndex);
-        } else {
+        }
+
+        if (movedCount > 0) {
             // Tactile UI click sound on successful move
             client.getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1.6F));
+        }
+
+        if (remainingCount > 0) {
+            // Smooth, clearly negative error sound when inventory cannot fit items (full)
+            //? if >1.21.1 {
+            /*client.getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.BUNDLE_INSERT_FAIL, 1.0F));
+            *///?} else {
+            client.getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.DISPENSER_FAIL, 0.8F));
+            //?}
         }
     }
 

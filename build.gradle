@@ -177,10 +177,15 @@ dependencies {
 // This block of code expands all declared replace properties in the specified resource targets.
 // A missing property will result in an error. Properties are expanded using ${} Groovy notation.
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
+    var mcVer = is26 ? '26.2' : (project.findProperty('minecraft_version') ?: '1.21.1')
+    var mcRange = project.findProperty('minecraft_version_range') ?: (is26 ? '[26.2]' : '[1.21.1]')
+    if (is26 && (mcRange == '[1.21.1]' || mcRange == null)) {
+        mcRange = '[26.2]'
+    }
     var replaceProperties = [
-            minecraft_version      : minecraft_version,
-            minecraft_version_range: minecraft_version_range,
-            neo_version            : neo_version,
+            minecraft_version      : mcVer,
+            minecraft_version_range: mcRange,
+            neo_version            : project.findProperty('neo_version') ?: (is26 ? '26.2.0.93' : '21.1.262'),
             loader_version_range   : loader_version_range,
             mod_id                 : mod_id,
             mod_name               : mod_name,
