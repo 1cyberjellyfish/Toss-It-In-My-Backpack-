@@ -68,4 +68,4 @@ The resulting mod `.jar` files will be in:
 ---
 
 ## 📜 License
-MIT License. Feel free to use in modpacks or customize!
+WTFPL (Do What The Fuck You Want To Public License). Feel free to use in modpacks or customize!

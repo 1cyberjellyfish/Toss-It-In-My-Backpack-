@@ -11,7 +11,7 @@
     "homepage": "https://github.com/CybJel/TIIMB",
     "sources": "https://github.com/CybJel/TIIMB"
   },
-  "license": "MIT",
+  "license": "WTFPL",
   "environment": "*",
   "entrypoints": {
     "client": [
